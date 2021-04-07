@@ -52,7 +52,7 @@ router.get('/all',
     }
 )
 
-router.get('/:id',
+router.get('/last/:id',
     async  (req, res) => {
         try {
             const data = await ForumPosts.find().sort({$natural:-1}).limit(+req.params.id)
@@ -64,6 +64,16 @@ router.get('/:id',
     }
 )
 
+router.get('/:id',
+    async  (req, res) => {
+        try {
+            const data = await ForumPosts.find({id:req.params.id})
 
+            return res.json({data})
+        } catch (e) {
+            res.status(500).json({msg: 'Something went wrong, try again later...'})
+        }
+    }
+)
 
 module.exports = router;

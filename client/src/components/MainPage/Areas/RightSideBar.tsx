@@ -9,7 +9,7 @@ const RightSideBar = () => {
 
     const fetchPosts = async (num: number) => {
         try {
-            const response = await request(`/api/posts/${num}`)
+            const response = await request(`/api/posts/last/${num}`)
 
             return response.data
         } catch (e) {
@@ -18,10 +18,15 @@ const RightSideBar = () => {
     }
 
     useEffect(() => {
-        fetchPosts(5).then(data => {
-            setPosts(data)
-        })
+        let mounted = true
 
+        if (mounted) {
+            fetchPosts(5).then(data => {
+                setPosts(data)
+            })
+        }
+
+        return () => {mounted = false}
         // eslint-disable-next-line
     }, [request])
 

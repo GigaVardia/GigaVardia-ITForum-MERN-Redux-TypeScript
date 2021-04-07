@@ -2,6 +2,7 @@ import {Route, Switch, Redirect} from "react-router-dom";
 import MainPage from "../components/MainPage/MainPage";
 import React from "react";
 import NewPostPage from "../components/NewPost/NewPostPage";
+import PostPage from "../components/PostPage/PostPage";
 
 export const useRoutes = (isAuthenticated: boolean) => {
     if (isAuthenticated) {
@@ -13,6 +14,8 @@ export const useRoutes = (isAuthenticated: boolean) => {
                     <Route path="/newPost" exact>
                         <NewPostPage/>
                     </Route>
+                    <Route path="/post/:id" children={<PostPage/>}/>
+
                     <Route path="/" exact>
                         <Redirect from="/" to="/user"/>
                     </Route>
