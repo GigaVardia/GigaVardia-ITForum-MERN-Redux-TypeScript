@@ -1,0 +1,33 @@
+.header {
+  &-outer {
+    width: 100%;
+
+    background-color: red;
+    grid-area: header;
+  }
+
+  &-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem;
+  }
+
+  &__nav {
+    display: flex;
+    align-items: center;
+
+    font-size: $fs-lg;
+
+    &-item {
+      margin: 0 1rem;
+      &-link {
+        color: white;
+      }
+    }
+  }
+
+  &__right {
+    display: flex;
+  }
+}

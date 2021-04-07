@@ -1,0 +1,9 @@
+.mainPage {
+  display: grid;
+
+  grid-template-columns: 0.5fr 1.5fr 0.5fr;
+  grid-template-areas:
+          "header header header"
+          "l-aside main r-aside"
+          "footer footer footer";
+}

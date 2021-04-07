@@ -1,0 +1,9 @@
+.footer {
+  &-outer {
+    width: 100%;
+    height: 10rem;
+
+    background-color: blue;
+    grid-area: footer;
+  }
+}

@@ -1,0 +1,62 @@
+.signUp {
+  position: absolute;
+  top: 200px;
+  left: 200px;
+  right: 200px;
+  bottom: 200px;
+
+  background-color: #0097e6;
+
+  border-radius: 1rem;
+  outline: none;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &-form {
+    display: flex;
+    flex-direction: column;
+    font-size: $fs-lg;
+
+    &-label {
+      margin: 1rem;
+      display: flex;
+      flex-direction: column;
+      color: white;
+
+      &-input {
+        width: 100%;
+        padding: .7rem 0.5rem;
+        border: .1rem solid black;
+        border-radius: 1rem;
+        margin-top: 1rem;
+
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+
+    &-btn {
+      border-radius: 1rem;
+      border: none;
+      padding: 1rem;
+      margin: 1rem 0;
+
+      &:hover {
+        cursor: pointer;
+        background-color: white;
+      }
+    }
+  }
+}
+
+.signUp-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  backdrop-filter: blur(5px);
+}

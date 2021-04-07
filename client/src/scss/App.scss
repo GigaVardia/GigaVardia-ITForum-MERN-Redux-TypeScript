@@ -1,0 +1,45 @@
+// Normalize
+@import "tools/normalize";
+
+// Reset
+@import "tools/reset";
+
+// Fonts
+@import "tools/fonts";
+
+// Variables
+@import "tools/vars";
+
+// Global Style
+@import "tools/global";
+
+// Grid
+@import "mainPageGrid";
+
+// Header
+@import "ComponentsStyle/header";
+
+// Sign Up
+@import "ComponentsStyle/signUpModal";
+
+// Sign In
+@import "ComponentsStyle/signInModal";
+
+// New Post
+@import "ComponentsStyle/newPost";
+
+// Left Side Bar
+@import "ComponentsStyle/leftSideBar";
+
+// Main
+@import "ComponentsStyle/main";
+
+// Right Side Bar
+@import "ComponentsStyle/rightSideBar";
+
+// Footer
+@import "ComponentsStyle/footer";
+
+// Media Queries
+@import "mediaQueries";
+

@@ -1,0 +1,25 @@
+.l-aside {
+  &-outer {
+    width: 100%;
+    height: 100%;
+
+    background-color: green;
+    grid-area: l-aside;
+  }
+
+  &-inner {
+
+  }
+
+  &-topics {
+    display: flex;
+    flex-direction: column;
+
+    font-size: $fs-md;
+
+    &__item {
+      margin: 1rem 0;
+      cursor: pointer;
+    }
+  }
+}
