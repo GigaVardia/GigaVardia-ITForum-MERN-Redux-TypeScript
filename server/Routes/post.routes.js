@@ -79,11 +79,23 @@ router.get('/:id',
 router.post('/addReply', auth,
         async (req, res) => {
             try {
-                const {reply, postId} = req.body;
+                const {reply, postId, userId} = req.body;
 
-                console.log(req.headers)
+                const user = await ForumUser.findOne({id: userId})
 
-                return res.json({data})
+                await ForumPosts.updateOne({id: postId}, {
+                    $push: {
+                        postReplies: {
+                            replyAuthor: user.username,
+                            replyAuthorId: userId,
+                            date: new Date(),
+                            reply
+                        }
+                    }
+                })
+
+
+                return res.json({msg: "New Reply!"})
             } catch (e) {
                 res.status(500).json({msg: 'Something went wrong, try again later...'})
             }
