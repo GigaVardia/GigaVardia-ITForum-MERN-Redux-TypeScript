@@ -1,0 +1,62 @@
+.postPage {
+  &-outer {
+    width: 100%;
+    height: 100%;
+  }
+
+  &-inner {
+    padding: 1rem;
+    height: 100%;
+  }
+
+  &__title {
+    font-size: $fs-h1;
+  }
+
+  &__body {
+    font-size: $fs-lg;
+    padding: 1rem;
+    background-color: #0097e6;
+    margin-bottom: 1rem;
+  }
+
+  &__replies {
+    width: 100%;
+    &-inner {
+      width: 100%;
+      height: 100%;
+    }
+
+    &-item {
+      margin: 1rem 0;
+      padding: 1rem;
+      font-size: $fs-lg;
+      width: 100%;
+      background-color: #0097e6;
+
+      &-replyAuthor {
+        padding: 1rem;
+        background-color: aquamarine;
+        font-size: $fs-xl;
+      }
+
+      &-reply {
+        background-color: aqua;
+        padding: 1rem;
+      }
+    }
+  }
+
+  &__newReply {
+    width: 100%;
+    &-textArea {
+      outline: none;
+      background-color: aliceblue;
+      padding: 1rem;
+      font-size: $fs-lg;
+      min-height: 10rem;
+      resize: none;
+      width: 100%;
+    }
+  }
+}

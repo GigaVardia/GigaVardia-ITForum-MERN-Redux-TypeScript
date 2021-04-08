@@ -4,6 +4,7 @@ import {useHttp} from "../../../hooks/useHttp";
 import {postsType} from "../../../types/posts.type";
 
 const RightSideBar = () => {
+    const [didMount, setDidMount] = useState(false)
     const [posts, setPosts] = useState<Array<postsType>>([])
     const {request, loading} = useHttp()
 
@@ -18,17 +19,16 @@ const RightSideBar = () => {
     }
 
     useEffect(() => {
-        let mounted = true
-
-        if (mounted) {
+        setDidMount(true)
+        if (didMount) {
             fetchPosts(5).then(data => {
                 setPosts(data)
             })
         }
 
-        return () => {mounted = false}
+        return () => setDidMount(false)
         // eslint-disable-next-line
-    }, [request])
+    }, [didMount])
 
 
     return (

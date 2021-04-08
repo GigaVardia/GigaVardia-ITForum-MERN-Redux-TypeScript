@@ -7,6 +7,10 @@
     grid-area: r-aside;
   }
 
+  &-inner {
+    padding: 1rem;
+  }
+
   &__title {
     font-size: $fs-h1;
   }
@@ -14,7 +18,7 @@
   .newPosts {
     display: flex;
     flex-direction: column;
-    order: revert;
+
 
     &__item{
       font-size: $fs-lg;

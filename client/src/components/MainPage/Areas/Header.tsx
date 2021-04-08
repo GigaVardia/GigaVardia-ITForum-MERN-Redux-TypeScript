@@ -25,6 +25,10 @@ const Header: FC = () => {
         history.push('/')
     }
 
+    const onClickLogo = () => {
+        history.push("/")
+    }
+
     const onClickSignUp = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         setSignUpClicked(!signUpClicked)
     }
@@ -35,10 +39,12 @@ const Header: FC = () => {
 
     return (
         <header className="header header-outer">
-            <SignUp isOpen={signUpClicked} element={'.main'}/>
-            <SignIn isOpen={signInClicked} element={'.main'}/>
+            <SignUp isOpen={signUpClicked} element={'.header'}/>
+            <SignIn isOpen={signInClicked} element={'.header'}/>
             <div className="header-inner container">
-                <div className="header__logo">
+                <div className="header__logo"
+                     onClick={onClickLogo}
+                >
                     IT-FORUM
                 </div>
                 <nav className="header__nav">

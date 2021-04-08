@@ -13,6 +13,12 @@
     padding: 2rem;
   }
 
+  &__logo {
+    font-size: $fs-h1;
+    cursor: pointer;
+    user-select: none;
+  }
+
   &__nav {
     display: flex;
     align-items: center;
