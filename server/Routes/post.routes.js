@@ -76,4 +76,18 @@ router.get('/:id',
     }
 )
 
+router.post('/addReply', auth,
+        async (req, res) => {
+            try {
+                const {reply, postId} = req.body;
+
+                console.log(req.headers)
+
+                return res.json({data})
+            } catch (e) {
+                res.status(500).json({msg: 'Something went wrong, try again later...'})
+            }
+        }
+    )
+
 module.exports = router;
