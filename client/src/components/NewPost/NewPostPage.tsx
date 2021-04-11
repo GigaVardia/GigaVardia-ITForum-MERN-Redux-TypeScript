@@ -32,7 +32,7 @@ const NewPostPage: React.FC = () => {
             })
 
             console.log(data)
-            history.push("/user")
+            history.push("/")
         } catch (e) {
             console.log(e, "Error while adding new post...")
         }

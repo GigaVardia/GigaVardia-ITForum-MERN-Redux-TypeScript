@@ -1,0 +1,47 @@
+.topicPosts {
+  &-outer {
+    width: 100%;
+    min-height: 60rem;
+  }
+
+  &-inner {
+    width: 100%;
+    height: 100%;
+
+    padding: 1rem;
+  }
+
+  &__title {
+    font-size: $fs-h1;
+  }
+
+  &__posts {
+    display: flex;
+    flex-direction: column;
+
+    &-item {
+      color: deeppink;
+      font-size: $fs-xl;
+      padding: 1rem;
+      margin: 1rem 0;
+      width: 100%;
+      background-color: #0097e6;
+
+      &-title {
+        color: white;
+        font-size: $fs-xl;
+      }
+
+      &-body {
+        color: black;
+        margin: 1rem;
+        padding: .5rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        background-color: aqua;
+        font-size: $fs-md;
+      }
+    }
+  }
+}

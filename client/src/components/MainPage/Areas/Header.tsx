@@ -5,17 +5,21 @@ import {useActions} from "../../../hooks/useActions";
 import SignUp from "../Auth/SignUp";
 import SignIn from "../Auth/SignIn";
 import {useAuth} from "../../../hooks/useAuth";
+import {useAlert} from "../../../hooks/UseAlert";
 
 const Header: FC = () => {
     const {signUpClicked, signInClicked} = useTypedSelector(state => state.mainInfo)
     const {isAuthenticated} = useTypedSelector(state => state.authentication)
+    const {setSignUpClicked, setSignInClicked, setIsAuthenticated} = useActions()
+    const Alert = useAlert()
     const {logout} = useAuth();
     const history = useHistory()
-    const {setSignUpClicked, setSignInClicked, setIsAuthenticated} = useActions()
 
     const onClickNewPost = () => {
         if (!isAuthenticated) {
-            alert("Sign in to create new post!")
+            Alert?.fire({
+                title: <p>Sign In to create new post!</p>
+            })
         }
     }
 
@@ -49,12 +53,12 @@ const Header: FC = () => {
                 </div>
                 <nav className="header__nav">
                     <div className="header__nav-item">
-                        <a
+                        <Link
                             className="header__nav-item-link"
-                            href="#!"
+                            to="/"
                         >
                             Home
-                        </a>
+                        </Link>
                     </div>
                     <div className="header__nav-item">
                         <a

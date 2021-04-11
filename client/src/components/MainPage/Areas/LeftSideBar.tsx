@@ -1,4 +1,6 @@
 import React from 'react';
+import {Link} from "react-router-dom";
+import {TopicsTypes as Topics} from "../../../types/topicsType";
 
 const LeftSideBar = () => {
     return (
@@ -6,19 +8,34 @@ const LeftSideBar = () => {
             <div className="l-aside-inner">
                 <ul className="l-aside-topics">
                     <li className="l-aside-topics__item">
-                        <div className="topic-web">
-                            HTML/CSS/JS
-                        </div>
+                        <Link className="l-aside-topics__item-link" to={`/topics/${Topics.WEB_DEV}`}>
+                            Web-Development
+                        </Link>
                     </li>
                     <li className="l-aside-topics__item">
-                        <div className="topic-gameDev">
-                            C++, C#, Java
-                        </div>
+                        <Link className="l-aside-topics__item-link" to={`/topics/${Topics.GAME_DEV}`} >
+                            Game Development
+                        </Link>
                     </li>
                     <li className="l-aside-topics__item">
-                        <div className="topic-languages">
-                            BrainFuck
-                        </div>
+                        <Link className="l-aside-topics__item-link" to={`/topics/${Topics.DATA_ANALYSE}`}>
+                            Data Analyse
+                        </Link>
+                    </li>
+                    <li className="l-aside-topics__item">
+                        <Link className="l-aside-topics__item-link" to={`/topics/${Topics.MOB_DEV}`}>
+                            Mobile Development
+                        </Link>
+                    </li>
+                    <li className="l-aside-topics__item">
+                        <Link className="l-aside-topics__item-link" to={`/topics/${Topics.EMB_SYS_DEV}`}>
+                            Embedded System development
+                        </Link>
+                    </li>
+                    <li className="l-aside-topics__item">
+                        <Link className="l-aside-topics__item-link" to={`/topics/${Topics.OTHERS}`}>
+                            Others
+                        </Link>
                     </li>
                 </ul>
             </div>

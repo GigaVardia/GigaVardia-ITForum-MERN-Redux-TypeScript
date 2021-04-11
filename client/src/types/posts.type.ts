@@ -1,4 +1,5 @@
 export type postsType = {
+    postAuthor: string,
     postTitle: string,
     postBody: string,
     date: string,

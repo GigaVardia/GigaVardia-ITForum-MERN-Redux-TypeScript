@@ -25,28 +25,6 @@
     .container {
         max-width: 720px;
     }
-
-    .header {
-        &-inner {
-            flex-direction: column;}
-        &-search{margin: $base*2  0 !important;}
-        text-align: center;
-    }
-
-    .list > .users-wrapper__item {
-        flex-direction: column;
-
-        .users-wrapper__item-info {
-            font-size: $fs-md !important;
-        }
-
-        .repos {
-            font-size: $fs-md !important;
-            flex-basis: auto !important;
-            align-self: flex-start;
-            word-break: break-all;
-        }
-    }
 }
 
 

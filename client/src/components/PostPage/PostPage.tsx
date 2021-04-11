@@ -5,12 +5,15 @@ import {postsType} from "../../types/posts.type";
 import Header from "../MainPage/Areas/Header";
 import Footer from "../MainPage/Areas/Footer";
 import {useAuth} from "../../hooks/useAuth";
+import {useTypedSelector} from "../../hooks/useTypedSelector";
+import {useAlert} from "../../hooks/UseAlert";
 
 type paramsType = {
     id: string
 }
 
 const initialPost = {
+    postAuthor: "",
     postTitle: "",
     postBody: "",
     date: "",
@@ -24,6 +27,8 @@ const PostPage: FC = () => {
     const {token, userId} = useAuth()
     const {id}: paramsType = useParams()
     const [reply, setReply] = useState("")
+    const {isAuthenticated} = useTypedSelector(state => state.authentication)
+    const Alert = useAlert()
 
     const fetchPost = async () => {
         try {
@@ -42,6 +47,13 @@ const PostPage: FC = () => {
     const onClickReply = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault()
 
+        if (!isAuthenticated) {
+            await Alert.fire({
+                title: <p>Sign In to reply!</p>,
+            })
+            return
+        }
+
         try {
             const data = await request('/api/posts/addReply', 'POST', {
                 postId:id,
@@ -52,6 +64,7 @@ const PostPage: FC = () => {
             })
 
             setReply("")
+            window.location.reload()
             console.log(data)
         } catch (e) {
             console.log("Error while reply...", e)
@@ -78,6 +91,9 @@ const PostPage: FC = () => {
                     <div className="postPage-inner container">
                         <div className="postPage__title">
                             {loading? <>Loading...</> : <>{post.postTitle}</>}
+                        </div>
+                        <div className="postPage__author">
+                            {loading? <>Loading...</> : <>Author: {post.postAuthor}</>}
                         </div>
                         <div className="postPage__body">
                             {loading? <>Loading...</> : <>{post.postBody}</>}

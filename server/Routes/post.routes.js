@@ -21,8 +21,9 @@ router.post('/newPost', auth,
                     }
                 }
             })
-
+            const user = await ForumUser.findOne({id: req.user.userId})
             const newPost = new ForumPosts({
+                postAuthor: user.username,
                 postTitle: title,
                 postBody: body,
                 postReplies: [],
@@ -68,6 +69,18 @@ router.get('/:id',
     async  (req, res) => {
         try {
             const data = await ForumPosts.find({id:req.params.id})
+
+            return res.json({data})
+        } catch (e) {
+            res.status(500).json({msg: 'Something went wrong, try again later...'})
+        }
+    }
+)
+
+router.get('/filter/:id',
+    async (req, res) => {
+        try {
+            const data = await ForumPosts.find({postTopic: req.params.id})
 
             return res.json({data})
         } catch (e) {

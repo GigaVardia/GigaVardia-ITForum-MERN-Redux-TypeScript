@@ -20,6 +20,10 @@
     &__item {
       margin: 1rem 0;
       cursor: pointer;
+
+      &-link {
+        color: #0097e6;
+      }
     }
   }
 }

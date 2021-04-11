@@ -1,6 +1,10 @@
 const {Schema, model, Types} = require('mongoose')
 
 const schema = new Schema({
+    postAuthor: {
+        type: String,
+        required: true,
+    },
     postTitle: {
         type: String,
         required: true,

@@ -4,6 +4,8 @@ import Modal from "react-modal";
 import {useActions} from "../../../hooks/useActions";
 import {useTypedSelector} from "../../../hooks/useTypedSelector";
 import {useHttp} from "../../../hooks/useHttp";
+import {useHistory} from 'react-router-dom'
+import {useAlert} from "../../../hooks/UseAlert";
 
 type propsTypes = {
     isOpen: boolean,
@@ -28,8 +30,9 @@ const SignIn: FC<propsTypes> = ({isOpen, element}) => {
     const {request} = useHttp()
     const {login} = useTypedSelector(state => state.authentication)
     const [btnDisabled, setBtnDisabled] = useState(true)
-
+    const history = useHistory()
     const {setSignInClicked} = useActions()
+    const Alert = useAlert()
 
     useEffect(() => {
         Modal.setAppElement(element)
@@ -61,7 +64,11 @@ const SignIn: FC<propsTypes> = ({isOpen, element}) => {
             }
 
             setSignInClicked(false)
+            history.go(0)
         } catch (e) {
+            await Alert.fire({
+                title: <p>Incorrect Email or Password!</p>,
+            })
             console.log(e, "Error while login fetch...")
         }
     }

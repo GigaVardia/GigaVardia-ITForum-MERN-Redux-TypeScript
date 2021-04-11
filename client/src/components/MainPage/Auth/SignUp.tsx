@@ -4,6 +4,7 @@ import {useActions} from "../../../hooks/useActions";
 import {isPasswordsSame, isPasswordValid} from "../../../common/validators/PasswordValidator";
 import {isEmailValid} from "../../../common/validators/EmailValidator";
 import {useHttp} from "../../../hooks/useHttp";
+import {useHistory} from 'react-router-dom'
 
 type propsTypes = {
     isOpen: boolean,
@@ -27,6 +28,7 @@ const SignUp: FC<propsTypes> = ({isOpen, element}) => {
     const {request} = useHttp()
     const [btnDisabled, setBtnDisabled] = useState(true)
     const {setSignUpClicked} = useActions()
+    const history = useHistory()
 
     const closeModal = () => {
         setSignUpClicked(false)
@@ -84,6 +86,7 @@ const SignUp: FC<propsTypes> = ({isOpen, element}) => {
         }
 
         fetchRegister(form)
+        history.go(0)
     }
 
     return (
