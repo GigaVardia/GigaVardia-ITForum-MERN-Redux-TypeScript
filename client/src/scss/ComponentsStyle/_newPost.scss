@@ -22,6 +22,10 @@
       font-size: $fs-h1;
     }
 
+    &__select {
+      width: 100%;
+    }
+
     &__input {
       margin: 1rem 0;
       font-size: $fs-xl;

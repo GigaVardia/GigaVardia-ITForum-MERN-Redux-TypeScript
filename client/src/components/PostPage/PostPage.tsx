@@ -90,7 +90,7 @@ const PostPage: FC = () => {
                 <div className="postPage postPage-outer">
                     <div className="postPage-inner container">
                         <div className="postPage__title">
-                            {loading? <>Loading...</> : <>{post.postTitle}</>}
+                            {loading? <>Loading...</> : <>Title: {post.postTitle}</>}
                         </div>
                         <div className="postPage__author">
                             {loading? <>Loading...</> : <>Author: {post.postAuthor}</>}
