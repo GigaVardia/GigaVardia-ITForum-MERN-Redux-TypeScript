@@ -6,6 +6,10 @@ import SignUp from "../Auth/SignUp";
 import SignIn from "../Auth/SignIn";
 import {useAuth} from "../../../hooks/useAuth";
 import {useAlert} from "../../../hooks/UseAlert";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUser } from '@fortawesome/free-solid-svg-icons'
+
+const UserIco = <FontAwesomeIcon icon={faUser} />
 
 const Header: FC = () => {
     const {signUpClicked, signInClicked} = useTypedSelector(state => state.mainInfo)
@@ -61,14 +65,6 @@ const Header: FC = () => {
                         </Link>
                     </div>
                     <div className="header__nav-item">
-                        <a
-                            className="header__nav-item-link"
-                            href="#!"
-                        >
-                            Forums
-                        </a>
-                    </div>
-                    <div className="header__nav-item">
                         <Link
                             className="header__nav-item-link"
                             to="/newPost"
@@ -97,12 +93,17 @@ const Header: FC = () => {
                                 </button>
                             </>
                             :
-                            <button
-                                className="header__right-btn btn-logout"
-                                onClick={onClickLogout}
-                            >
-                                Log Out
-                            </button>
+                            <>
+                                <div className="header__right-userPage">
+                                    {UserIco}
+                                </div>
+                                <button
+                                    className="header__right-btn btn-logout"
+                                    onClick={onClickLogout}
+                                >
+                                    Log Out
+                                </button>
+                            </>
                     }
 
                 </div>

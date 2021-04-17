@@ -35,5 +35,16 @@
 
   &__right {
     display: flex;
+
+    &-userPage {
+      font-size: $fs-xl;
+      color: white;
+      margin-right: .5rem;
+      cursor: pointer;
+
+      &:hover {
+        color: darken(white, 10%);
+      }
+    }
   }
 }

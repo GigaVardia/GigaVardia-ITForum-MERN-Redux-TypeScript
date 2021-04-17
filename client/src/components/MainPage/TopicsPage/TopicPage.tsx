@@ -10,7 +10,6 @@ import {useHttp} from "../../../hooks/useHttp";
 import {useTypedSelector} from "../../../hooks/useTypedSelector";
 import {useAlert} from "../../../hooks/UseAlert";
 
-
 type paramsType = {
     id: TopicsTypes
 }
@@ -19,6 +18,7 @@ const TopicPage = () => {
     const {id}: paramsType = useParams()
     const [posts, setPosts] = useState<Array<postsType>>([])
     const {request, loading} = useHttp()
+    const [isMount, setIsMount] = useState(false)
     const {isAuthenticated} = useTypedSelector(state => state.authentication)
     const Alert = useAlert()
 
@@ -41,10 +41,15 @@ const TopicPage = () => {
     }
 
     useEffect(() => {
-        fetchPosts().then((data: Array<postsType>) => {
-            setPosts(data.reverse())
-        })
+        setIsMount(true)
 
+        if (isMount) {
+            fetchPosts().then((data: Array<postsType>) => {
+                setPosts(data.reverse())
+            })
+        }
+
+        return () => setIsMount(false)
         // eslint-disable-next-line
     }, [request])
 
@@ -72,9 +77,12 @@ const TopicPage = () => {
                                         key={`topicPost${post.date}`}
                                         className="topicPosts__posts-item"
                                     >
-                                        <div className="topicPosts__posts-item-title">
-                                            {post.postTitle}
-                                        </div>
+                                         <Link
+                                             className="topicPosts__posts-item-title"
+                                             to={`/post/${post.id}`}
+                                         >
+                                             {post.postTitle}
+                                         </Link>:
                                         <div className="topicPosts__posts-item-body">
                                             {post.postBody}
                                         </div>
