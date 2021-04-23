@@ -6,6 +6,7 @@ const LeftSideBar = () => {
     return (
         <aside className="l-aside l-aside-outer" >
             <div className="l-aside-inner">
+                <div className="l-aside__title">Topics</div>
                 <ul className="l-aside-topics">
                     <li className="l-aside-topics__item">
                         <Link className="l-aside-topics__item-link" to={`/topics/${Topics.WEB_DEV}`}>

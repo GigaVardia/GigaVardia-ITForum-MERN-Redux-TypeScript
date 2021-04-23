@@ -2,7 +2,7 @@
   &-outer {
     width: 100%;
 
-    background-color: red;
+    background-color: $color-primary;
     grid-area: header;
   }
 
@@ -15,8 +15,14 @@
 
   &__logo {
     font-size: $fs-h1;
+    color: $color-secondary;
     cursor: pointer;
     user-select: none;
+
+    &:hover {
+      transition: $transition;
+      color: darken($color-secondary, 20%);
+    }
   }
 
   &__nav {
@@ -28,7 +34,15 @@
     &-item {
       margin: 0 1rem;
       &-link {
-        color: white;
+        display: inline-block;
+        color: $color-secondary;
+        border-bottom: 1px solid transparent;
+
+        &:hover {
+          transition: $transition;
+          border-color: $color-secondary;
+          color: darken($color-secondary, 20%);
+        }
       }
     }
   }
@@ -38,12 +52,33 @@
 
     &-userPage {
       font-size: $fs-xl;
-      color: white;
+      color: $color-secondary;
       margin-right: .5rem;
       cursor: pointer;
 
       &:hover {
-        color: darken(white, 10%);
+        transition: $transition;
+        color: darken($color-secondary, 10%);
+      }
+    }
+
+    &-btn {
+      font-size: $fs-md;
+      outline: none;
+      border: none;
+      background-color: $color-lightBlack;
+      border-radius: .4rem;
+      padding: 1rem 2rem;
+      color: $color-secondary;
+      cursor: pointer;
+
+      &:hover {
+        transition: $transition;
+        color: darken($color-secondary, 10%);
+      }
+
+      &+& {
+        margin-left: .5rem;
       }
     }
   }

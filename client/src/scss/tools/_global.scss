@@ -9,11 +9,12 @@
     max-width: 1320px;
     margin: 0 auto;
 }
-body {font-family: 'Roboto', sans-serif;}
+body {font-family: 'Montserrat', sans-serif; background-color: $color-lightBlack}
 
 html {font-size: 10px;}
 
 .bolder {
     font-weight: $fw-500;
 }
+
 // === Global <<<
