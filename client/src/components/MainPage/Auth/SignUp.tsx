@@ -5,6 +5,7 @@ import {isPasswordsSame, isPasswordValid} from "../../../common/validators/Passw
 import {isEmailValid} from "../../../common/validators/EmailValidator";
 import {useHttp} from "../../../hooks/useHttp";
 import {useHistory} from 'react-router-dom'
+import {useAlert} from "../../../hooks/UseAlert";
 
 type propsTypes = {
     isOpen: boolean,
@@ -29,6 +30,7 @@ const SignUp: FC<propsTypes> = ({isOpen, element}) => {
     const [btnDisabled, setBtnDisabled] = useState(true)
     const {setSignUpClicked} = useActions()
     const history = useHistory()
+    const SweetAlert = useAlert()
 
     const closeModal = () => {
         setSignUpClicked(false)
@@ -40,8 +42,8 @@ const SignUp: FC<propsTypes> = ({isOpen, element}) => {
 
     useEffect(() => {
         if (
-            form.username.length > 0 && form.password.length > 6 &&
-            form.confirm_password.length > 8 && form.email.length > 3
+            form.username.length > 5 && form.password.length > 6 &&
+            form.confirm_password.length > 6 && form.email.length > 5
         ) {
             setBtnDisabled(false)
         }
@@ -60,12 +62,21 @@ const SignUp: FC<propsTypes> = ({isOpen, element}) => {
             console.log(data)
             setSignUpClicked(false)
         } catch (e) {
+            SweetAlert.fire({
+                title: <p>Something went wrong. Try again...</p>
+            })
             console.log(e, "Error, while register fetch...");
         }
     }
 
     const onClickSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault()
+
+        if (form.username.length > 15) {
+            SweetAlert.fire({
+                title: <p>Username length must be less than 15 symbols!</p>
+            })
+        }
 
         const comparePassword = isPasswordsSame(form.password, form.confirm_password);
         if (!comparePassword.isValid) {

@@ -1,11 +1,11 @@
-import React, {FC, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import "./scss/App.scss"
 import {useRoutes} from "./hooks/useRoutes";
 import {useAuth} from "./hooks/useAuth";
 import {useActions} from "./hooks/useActions";
 
 // Style
-const App: FC = () => {
+const App: React.FC = () => {
     const {token, userId, login, logout} = useAuth();
     const {setAuthenticationOptionsAll} = useActions()
 
@@ -16,11 +16,7 @@ const App: FC = () => {
     })
     const routes = useRoutes(!!token)
 
-    return (
-        <div className="app">
-            {routes}
-        </div>
-    )
+    return routes
 };
 
 export default App;

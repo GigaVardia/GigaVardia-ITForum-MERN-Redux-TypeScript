@@ -8,7 +8,7 @@ import Footer from "./Areas/Footer";
 
 const MainPage: React.FC = () => {
     return (
-        <div className="mainPage">
+        <div className="app">
             <Header/>
             <LeftSideBar/>
             <Main/>

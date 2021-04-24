@@ -85,15 +85,15 @@ const PostPage: FC = () => {
     }, [request])
 
     return (
-        <>
+        <div className="wrapper">
             <Header/>
                 <div className="postPage postPage-outer">
                     <div className="postPage-inner container">
-                        <div className="postPage__title">
-                            {loading? <>Loading...</> : <>Title: {post.postTitle}</>}
-                        </div>
                         <div className="postPage__author">
-                            {loading? <>Loading...</> : <>Author: {post.postAuthor}</>}
+                            {loading? <>Loading...</> : <>{post.postAuthor}</>}
+                        </div>
+                        <div className="postPage__title">
+                            {loading? <>Loading...</> : <>{post.postTitle}</>}
                         </div>
                         <div className="postPage__body">
                             {loading? <>Loading...</> : <>{post.postBody}</>}
@@ -138,7 +138,7 @@ const PostPage: FC = () => {
                     </div>
                 </div>
             <Footer/>
-        </>
+        </div>
     );
 };
 

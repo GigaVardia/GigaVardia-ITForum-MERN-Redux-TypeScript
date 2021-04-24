@@ -18,7 +18,6 @@ const TopicPage = () => {
     const {id}: paramsType = useParams()
     const [posts, setPosts] = useState<Array<postsType>>([])
     const {request, loading} = useHttp()
-    const [isMount, setIsMount] = useState(false)
     const {isAuthenticated} = useTypedSelector(state => state.authentication)
     const Alert = useAlert()
 
@@ -33,7 +32,6 @@ const TopicPage = () => {
     const fetchPosts = async () => {
         try {
             const response = await request(`/api/posts/filter/${id}`)
-
             return response.data
         } catch (e) {
             console.log("Error fetching topic posts...", e)
@@ -41,20 +39,15 @@ const TopicPage = () => {
     }
 
     useEffect(() => {
-        setIsMount(true)
+        fetchPosts().then((data: Array<postsType>) => {
+            setPosts(data.reverse())
+        })
 
-        if (isMount) {
-            fetchPosts().then((data: Array<postsType>) => {
-                setPosts(data.reverse())
-            })
-        }
-
-        return () => setIsMount(false)
         // eslint-disable-next-line
     }, [request])
 
     return (
-        <>
+        <div className="wrapper">
             <Header/>
             <div className="topicPosts topicPosts-outer">
                 <div className="topicPosts-inner container">
@@ -64,36 +57,45 @@ const TopicPage = () => {
                     <ul className="topicPosts__posts">
                         {
                             loading ? <li className="topicPosts__posts-item">Loading...</li> :
-                                posts.length === 0 ?
+                                posts.length < 1 ?
                                         <Link
                                             className="topicPosts__posts-item"
                                             to="/newPost"
                                             onClick={onClickNewPost}
                                         >
-                                            New Post!
-                                        </Link>:
+                                            Add new Post!
+                                        </Link> :
                                 posts.map(post =>
-                                    <li
-                                        key={`topicPost${post.date}`}
+                                    <>
+                                        <li
+                                            key={`topicPost${post.date}`}
+                                            className="topicPosts__posts-item"
+                                        >
+                                             <Link
+                                                 className="topicPosts__posts-item-title"
+                                                 to={`/post/${post.id}`}
+                                             >
+                                                 {post.postAuthor}: <br/>{post.postTitle}
+                                             </Link>
+                                            <div className="topicPosts__posts-item-body">
+                                                {post.postBody}
+                                            </div>
+                                        </li>
+                                        <Link
                                         className="topicPosts__posts-item"
-                                    >
-                                         <Link
-                                             className="topicPosts__posts-item-title"
-                                             to={`/post/${post.id}`}
-                                         >
-                                             {post.postTitle}
-                                         </Link>:
-                                        <div className="topicPosts__posts-item-body">
-                                            {post.postBody}
-                                        </div>
-                                    </li>
+                                        to="/newPost"
+                                        onClick={onClickNewPost}
+                                        >
+                                        Add new Post!
+                                        </Link>
+                                    </>
                                 )
                         }
                     </ul>
                 </div>
             </div>
             <Footer/>
-        </>
+        </div>
     );
 };
 

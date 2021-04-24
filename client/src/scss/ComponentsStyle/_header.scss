@@ -4,6 +4,7 @@
 
     background-color: $color-primary;
     grid-area: header;
+    align-self: flex-start;
   }
 
   &-inner {
@@ -49,11 +50,12 @@
 
   &__right {
     display: flex;
+    align-items: center;
 
     &-userPage {
       font-size: $fs-xl;
       color: $color-secondary;
-      margin-right: .5rem;
+      margin-right: 1rem;
       cursor: pointer;
 
       &:hover {

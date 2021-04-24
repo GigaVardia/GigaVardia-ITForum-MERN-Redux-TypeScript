@@ -1,7 +1,7 @@
 .topicPosts {
   &-outer {
     width: 100%;
-    min-height: 60rem;
+    height: 100%;
   }
 
   &-inner {
@@ -12,6 +12,7 @@
   }
 
   &__title {
+    color: $color-secondary;
     font-size: $fs-h1;
   }
 
@@ -20,26 +21,28 @@
     flex-direction: column;
 
     &-item {
-      color: deeppink;
+      color: $color-secondary;
       font-size: $fs-xl;
       padding: 1rem;
       margin: 1rem 0;
       width: 100%;
-      background-color: #0097e6;
+      background-color: $color-primary;
+      border-radius: 1rem;
 
       &-title {
-        color: white;
+        color: $color-secondary;
         font-size: $fs-xl;
       }
 
       &-body {
-        color: black;
         margin: 1rem;
-        padding: .5rem;
+        padding: 1rem;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-        background-color: aqua;
+        background-color: $color-lightBlack;
+        border-radius: 1rem;
+        color: $color-secondary;
         font-size: $fs-md;
       }
     }

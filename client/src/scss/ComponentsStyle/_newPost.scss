@@ -18,6 +18,7 @@
     padding: 1rem;
 
     &__title {
+      color: $color-secondary;
       margin: 1rem 0;
       font-size: $fs-h1;
     }
@@ -32,6 +33,7 @@
       padding: 1rem;
       border-radius: 1rem;
       outline: none;
+      width: 100%;
     }
 
     &__textArea {
@@ -41,6 +43,27 @@
       font-size: $fs-lg;
       padding: 1rem;
       min-height: 20rem;
+      border-radius: 1rem;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    &__btn {
+      border: none;
+      outline: none;
+      border-radius: 1rem;
+      padding: 1rem 2rem;
+      font-size: $fs-xl;
+      background-color: $color-primary;
+      color: $color-secondary;
+
+      &:hover {
+        cursor: pointer;
+        transition: $transition;
+        transform: scale(1.01);
+      }
     }
   }
 }

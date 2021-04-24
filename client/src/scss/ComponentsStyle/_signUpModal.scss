@@ -5,7 +5,7 @@
   right: 200px;
   bottom: 200px;
 
-  background-color: #0097e6;
+  background-color: $color-modalBg;
 
   border-radius: 1rem;
   outline: none;
@@ -23,7 +23,7 @@
       margin: 1rem;
       display: flex;
       flex-direction: column;
-      color: white;
+      color: $color-secondary;
 
       &-input {
         width: 100%;
@@ -39,14 +39,17 @@
     }
 
     &-btn {
+      color: $color-secondary;
       border-radius: 1rem;
       border: none;
       padding: 1rem;
       margin: 1rem 0;
+      background-color: $color-modalBtn;
+      cursor: pointer;
 
       &:hover {
-        cursor: pointer;
-        background-color: white;
+        transition: $transition;
+        background-color: lighten($color-modalBtn, 10%);
       }
     }
   }

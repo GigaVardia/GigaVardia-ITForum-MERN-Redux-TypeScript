@@ -7,6 +7,7 @@ import {useAuth} from "../../hooks/useAuth";
 import Header from "../MainPage/Areas/Header";
 import Footer from "../MainPage/Areas/Footer";
 import Select from 'react-select'
+import {useAlert} from "../../hooks/UseAlert";
 
 const options = [
     { value: TopicsTypes.WEB_DEV, label: Topics.WebDev},
@@ -23,6 +24,7 @@ const NewPostPage: React.FC = () => {
     const [topic, setTopic] = useState({value: "", label: ""})
     const {token} = useAuth()
     const history = useHistory()
+    const SweetAlert = useAlert()
 
     const {request} = useHttp()
 
@@ -41,6 +43,12 @@ const NewPostPage: React.FC = () => {
     const onClickNewPost = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault()
 
+        if (title.length > 100) {
+            SweetAlert.fire({
+                title: <p>Title length must be less than 100 symbols!</p>
+            })
+        }
+
         try {
             const data = await request('/api/posts/newPost', 'POST', {
                 title,
@@ -53,13 +61,16 @@ const NewPostPage: React.FC = () => {
             console.log(data)
             history.push("/")
         } catch (e) {
+            SweetAlert.fire({
+                title: <p>Something Went Wrong! Try again...</p>
+            })
             console.log(e, "Error while adding new post...")
         }
     }
 
     return (
-        <>
-        <Header/>
+        <div className="wrapper">
+            <Header/>
             <section className="newPost newPost-outer">
                 <div className="newPost-inner container">
                     <form className="newPost-form">
@@ -76,6 +87,7 @@ const NewPostPage: React.FC = () => {
                         <Select
                             className="newPost-form__select"
                             onChange={onChangeSelect}
+                            placeholder="Select topic..."
                             options={options}
                         />
 
@@ -91,13 +103,13 @@ const NewPostPage: React.FC = () => {
                             className="newPost-form__btn"
                             onClick={onClickNewPost}
                         >
-                            Add new post
+                            Create new post
                         </button>
                     </form>
                 </div>
             </section>
             <Footer/>
-        </>
+        </div>
     );
 };
 

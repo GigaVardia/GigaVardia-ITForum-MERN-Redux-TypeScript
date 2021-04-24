@@ -1,9 +1,18 @@
-.mainPage {
+.app {
   display: grid;
+  height: 100vh;
 
-  grid-template-columns: 0.5fr 1.5fr 0.5fr;
+  grid-template-columns: 0.4fr 1.5fr 0.5fr;
   grid-template-areas:
           "header header header"
           "l-aside main r-aside"
           "footer footer footer";
+  grid-auto-rows: 1fr 10fr 2fr;
+  grid-column-gap: .3rem;
+}
+
+.wrapper {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }

@@ -7,25 +7,31 @@
   &-inner {
     padding: 1rem;
     height: 100%;
+    color: $color-secondary;
   }
 
   &__title {
+    color: $color-secondary;
+    margin-bottom: 1rem;
     font-size: $fs-h1;
   }
 
   &__author {
     font-size: $fs-xl;
+    margin-bottom: 1rem;
   }
 
   &__body {
     font-size: $fs-lg;
     padding: 1rem;
-    background-color: #0097e6;
+    background-color: darken($color-lightBlack, 20%);
     margin-bottom: 1rem;
     margin-top: 1rem;
+    border-radius: 1rem;
+    word-wrap: break-word;
+    max-height: 20rem;
 
-    max-height: 10rem;
-    overflow: auto;
+    overflow-y: auto;
   }
 
   &__replies {
@@ -42,18 +48,20 @@
       padding: 1rem;
       font-size: $fs-lg;
       width: 100%;
-      background-color: #0097e6;
+      border-radius: 1rem;
+      background-color: $color-primary;
 
       &-replyAuthor {
-        padding: 1rem;
-        background-color: aquamarine;
+        color: $color-secondary;
+        margin-bottom: 1rem;
         font-size: $fs-xl;
       }
 
       &-reply {
         max-height: 10rem;
+        word-break: break-word;
         overflow: auto;
-        background-color: aqua;
+        background-color: $color-lightBlack;
         padding: 1rem;
       }
     }
@@ -62,13 +70,32 @@
   &__newReply {
     width: 100%;
     &-textArea {
+      border-radius: 1rem;
       outline: none;
-      background-color: aliceblue;
       padding: 1rem;
+      background-color: $color-lightBlack;
       font-size: $fs-lg;
       min-height: 10rem;
       resize: none;
       width: 100%;
+      margin-bottom: 1rem;
+      color: $color-secondary;
+    }
+
+    &-btn {
+      color: $color-secondary;
+      font-size: $fs-xl;
+      border-radius: 1rem;
+      border: none;
+      padding: 1rem 2rem;
+      margin: 1rem 0;
+      background-color: $color-modalBtn;
+      cursor: pointer;
+
+      &:hover {
+        transition: $transition;
+        background-color: lighten($color-modalBtn, 10%);
+      }
     }
   }
 }
