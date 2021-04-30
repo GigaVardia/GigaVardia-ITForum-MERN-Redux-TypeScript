@@ -1,4 +1,4 @@
-import React, {FC, useEffect, useState} from 'react';
+import React, {FC, useCallback, useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom'
 import {useHttp} from "../../hooks/useHttp";
 import {postsType} from "../../types/posts.type";
@@ -30,7 +30,7 @@ const PostPage: FC = () => {
     const {isAuthenticated} = useTypedSelector(state => state.authentication)
     const Alert = useAlert()
 
-    const fetchPost = async () => {
+    const fetchPost = useCallback(async () => {
         try {
             const response = await request(`/api/posts/${id}`)
 
@@ -38,7 +38,7 @@ const PostPage: FC = () => {
         } catch (e) {
             console.log("Error fetching post...", e)
         }
-    }
+    }, [id, request])
 
     const onChangeReply = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         setReply(e.target.value)
@@ -63,9 +63,10 @@ const PostPage: FC = () => {
                 authorization: `Bearer ${token}`
             })
 
-            setReply("")
+            if (data.msg === "New Reply!") {
+                setReply("")
+            }
             window.location.reload()
-            console.log(data)
         } catch (e) {
             console.log("Error while reply...", e)
         }
@@ -76,13 +77,14 @@ const PostPage: FC = () => {
 
         if (isMounted) {
             fetchPost().then(data => {
-                setPost(data[0])
+                console.log(data)
+                setPost(data)
             })
         }
 
+        console.log("Here")
         return () => {isMounted=false}
-        // eslint-disable-next-line
-    }, [request])
+    }, [fetchPost])
 
     return (
         <div className="wrapper">

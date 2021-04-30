@@ -68,7 +68,7 @@ router.get('/last/:id',
 router.get('/:id',
     async  (req, res) => {
         try {
-            const data = await ForumPosts.find({id:req.params.id})
+            const data = await ForumPosts.findOne({id:req.params.id})
 
             return res.json({data})
         } catch (e) {
