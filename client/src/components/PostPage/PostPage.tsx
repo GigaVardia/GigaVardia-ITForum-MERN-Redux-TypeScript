@@ -4,6 +4,7 @@ import {useHttp} from "../../hooks/useHttp";
 import {postsType} from "../../types/posts.type";
 import Header from "../MainPage/Areas/Header";
 import Footer from "../MainPage/Areas/Footer";
+import Replies from "./Replies";
 import {useAuth} from "../../hooks/useAuth";
 import {useTypedSelector} from "../../hooks/useTypedSelector";
 import {useAlert} from "../../hooks/UseAlert";
@@ -77,12 +78,10 @@ const PostPage: FC = () => {
 
         if (isMounted) {
             fetchPost().then(data => {
-                console.log(data)
                 setPost(data)
             })
         }
 
-        console.log("Here")
         return () => {isMounted=false}
     }, [fetchPost])
 
@@ -104,20 +103,7 @@ const PostPage: FC = () => {
                             <div className="postPage__replies-inner">
                                 {
                                     loading ? null : post.postReplies.length > 0 ?
-                                        post.postReplies.map((item, index) => {
-                                            return (
-                                                <div
-                                                    className="postPage__replies-item"
-                                                    key={`${item.replyAuthorId}-${index}`}>
-                                                    <div className="postPage__replies-item-replyAuthor">
-                                                        {item.replyAuthor}
-                                                    </div>
-                                                    <div className="postPage__replies-item-reply">
-                                                        {item.reply}
-                                                    </div>
-                                                </div>
-                                            )
-                                        })
+                                        <Replies replies={post.postReplies}/>
                                         : null
                                 }
                             </div>
