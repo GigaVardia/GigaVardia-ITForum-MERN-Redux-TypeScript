@@ -8,17 +8,18 @@ import Replies from "./Replies";
 import {useAuth} from "../../hooks/useAuth";
 import {useTypedSelector} from "../../hooks/useTypedSelector";
 import {useAlert} from "../../hooks/UseAlert";
+import Pagination from "./Pagination";
 
 type paramsType = {
     id: string
 }
 
-const initialPost = {
+const initialPost: postsType = {
     postAuthor: "",
     postTitle: "",
     postBody: "",
     date: "",
-    postReplies: [],
+    postReplies: [{replyAuthor: "", replyAuthorId: "", reply: "", date:""}],
     id: ""
 }
 
@@ -28,7 +29,10 @@ const PostPage: FC = () => {
     const {token, userId} = useAuth()
     const {id}: paramsType = useParams()
     const [reply, setReply] = useState("")
+    const [clickedReply, setClickedReply] = useState(1)
     const {isAuthenticated} = useTypedSelector(state => state.authentication)
+    const [replyPerPage] = useState(5);
+    const [currentPage, setCurrentPage] = useState(1)
     const Alert = useAlert()
 
     const fetchPost = useCallback(async () => {
@@ -40,6 +44,37 @@ const PostPage: FC = () => {
             console.log("Error fetching post...", e)
         }
     }, [id, request])
+
+    useEffect(() => {
+        let isMounted = true
+
+        if (isMounted) {
+            fetchPost().then((data: postsType) => {
+                setPost(data)
+            })
+        }
+
+        return () => {isMounted=false}
+    }, [fetchPost, clickedReply])
+
+    if (loading) {
+        return (
+            <div className="wrapper">
+                <Header/>
+                <div className="loading">
+
+                </div>
+                <Footer/>
+            </div>
+        )
+    }
+
+    // Pagination
+    const totalReplies = post.postReplies.length;
+    const indexOfLastReply = currentPage * replyPerPage;
+    const indexOfFirstReply = indexOfLastReply - replyPerPage;
+    const currentReplies = post.postReplies.slice(indexOfFirstReply, indexOfLastReply);
+    const howManyPages = Math.ceil(totalReplies/replyPerPage);
 
     const onChangeReply = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         setReply(e.target.value)
@@ -67,23 +102,11 @@ const PostPage: FC = () => {
             if (data.msg === "New Reply!") {
                 setReply("")
             }
-            window.location.reload()
+            setClickedReply(clickedReply+1);
         } catch (e) {
             console.log("Error while reply...", e)
         }
     }
-
-    useEffect(() => {
-        let isMounted = true
-
-        if (isMounted) {
-            fetchPost().then(data => {
-                setPost(data)
-            })
-        }
-
-        return () => {isMounted=false}
-    }, [fetchPost])
 
     return (
         <div className="wrapper">
@@ -91,30 +114,30 @@ const PostPage: FC = () => {
                 <div className="postPage postPage-outer">
                     <div className="postPage-inner container">
                         <div className="postPage__author">
-                            {loading? <>Loading...</> : <>{post.postAuthor}</>}
+                            {post.postAuthor}
                         </div>
                         <div className="postPage__title">
-                            {loading? <>Loading...</> : <>{post.postTitle}</>}
+                            {post.postTitle}
                         </div>
                         <div className="postPage__body">
-                            {loading? <>Loading...</> : <>{post.postBody}</>}
+                            {post.postBody}
                         </div>
-                        <div className="postPage__replies">
-                            <div className="postPage__replies-inner">
+                        <div className="replies">
+                            <div className="replies-inner">
                                 {
-                                    loading ? null : post.postReplies.length > 0 ?
-                                        <Replies replies={post.postReplies}/>
+                                    totalReplies > 0 ?
+                                        <Replies replies={currentReplies}/>
                                         : null
                                 }
                             </div>
                         </div>
+                        {howManyPages > 1 ? <Pagination pages={howManyPages} setCurrentPage={setCurrentPage}/> : null}
                         <div className="postPage__newReply">
                             <textarea
                                 className="postPage__newReply-textArea"
                                 onChange={onChangeReply}
                                 value={reply}
                             >
-
                             </textarea>
                             <button
                                 className="postPage__newReply-btn"

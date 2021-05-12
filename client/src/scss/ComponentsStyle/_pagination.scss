@@ -1,0 +1,23 @@
+.pgn {
+  &-inner {
+
+  }
+
+  &__btn {
+    min-width: 4rem;
+    padding: .5rem 1rem;
+    height: auto;
+    border: none;
+    outline: none;
+    margin-right: .5rem;
+    cursor: pointer;
+
+    &--active {
+      background-color: blue;
+    }
+
+    &--disabled {
+      background-color: gray;
+    }
+  }
+}

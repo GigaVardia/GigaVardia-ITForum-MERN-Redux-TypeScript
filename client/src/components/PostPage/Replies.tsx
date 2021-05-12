@@ -1,8 +1,6 @@
 import React from 'react';
 import {repliesType} from "../../types/posts.type";
 
-const MAX_REPLIES = 3;
-
 type RepliesType = {
     replies: repliesType
 }
