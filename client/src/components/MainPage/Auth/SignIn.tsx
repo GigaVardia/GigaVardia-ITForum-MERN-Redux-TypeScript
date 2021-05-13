@@ -6,6 +6,7 @@ import {useTypedSelector} from "../../../hooks/useTypedSelector";
 import {useHttp} from "../../../hooks/useHttp";
 import {useHistory} from 'react-router-dom'
 import {useAlert} from "../../../hooks/UseAlert";
+import {API} from "../../../config";
 
 type propsTypes = {
     isOpen: boolean,
@@ -58,7 +59,7 @@ const SignIn: FC<propsTypes> = ({isOpen, element}) => {
     const onClickSignIn = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault()
         try {
-            const data: requestData = await request('/api/auth/login', 'POST', {...form})
+            const data: requestData = await request(`${API}/api/auth/login`, 'POST', {...form})
             if (login) {
                 login(data.token, data.userId)
             }

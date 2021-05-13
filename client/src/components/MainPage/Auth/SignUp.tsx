@@ -6,6 +6,7 @@ import {isEmailValid} from "../../../common/validators/EmailValidator";
 import {useHttp} from "../../../hooks/useHttp";
 import {useHistory} from 'react-router-dom'
 import {useAlert} from "../../../hooks/UseAlert";
+import {API} from "../../../config";
 
 type propsTypes = {
     isOpen: boolean,
@@ -58,7 +59,7 @@ const SignUp: FC<propsTypes> = ({isOpen, element}) => {
 
     const fetchRegister = async (user: stateType) => {
         try {
-            const data = await request('/api/auth/register', 'POST', user);
+            const data = await request(`${API}/api/auth/register`, 'POST', user);
             console.log(data)
             setSignUpClicked(false)
         } catch (e) {

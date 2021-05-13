@@ -9,6 +9,7 @@ import {useAuth} from "../../hooks/useAuth";
 import {useTypedSelector} from "../../hooks/useTypedSelector";
 import {useAlert} from "../../hooks/UseAlert";
 import Pagination from "./Pagination";
+import {API} from "../../config";
 
 type paramsType = {
     id: string
@@ -37,7 +38,7 @@ const PostPage: FC = () => {
 
     const fetchPost = useCallback(async () => {
         try {
-            const response = await request(`/api/posts/${id}`)
+            const response = await request(`${API}/api/posts/${id}`)
 
             return response.data
         } catch (e) {
@@ -91,7 +92,7 @@ const PostPage: FC = () => {
         }
 
         try {
-            const data = await request('/api/posts/addReply', 'POST', {
+            const data = await request(`${API}/api/posts/addReply`, 'POST', {
                 postId:id,
                 userId,
                 reply

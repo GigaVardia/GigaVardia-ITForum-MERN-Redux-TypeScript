@@ -9,6 +9,7 @@ import {postsType} from "../../../types/posts.type";
 import {useHttp} from "../../../hooks/useHttp";
 import {useTypedSelector} from "../../../hooks/useTypedSelector";
 import {useAlert} from "../../../hooks/UseAlert";
+import {API} from "../../../config";
 
 type paramsType = {
     id: TopicsTypes
@@ -31,7 +32,7 @@ const TopicPage = () => {
 
     const fetchPosts = async () => {
         try {
-            const response = await request(`/api/posts/filter/${id}`)
+            const response = await request(`${API}/api/posts/filter/${id}`)
             return response.data
         } catch (e) {
             console.log("Error fetching topic posts...", e)
@@ -66,9 +67,9 @@ const TopicPage = () => {
                                             Add new Post!
                                         </Link> :
                                 posts.map(post =>
-                                    <>
+                                    <React.Fragment key={`topicPost${post.date}`}>
                                         <li
-                                            key={`topicPost${post.date}`}
+
                                             className="topicPosts__posts-item"
                                         >
                                              <Link
@@ -88,7 +89,7 @@ const TopicPage = () => {
                                         >
                                         Add new Post!
                                         </Link>
-                                    </>
+                                    </React.Fragment>
                                 )
                         }
                     </ul>

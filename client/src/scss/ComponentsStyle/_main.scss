@@ -8,4 +8,32 @@
     border-radius: .5rem;
     grid-area: main;
   }
+
+  &-inner {
+    display: flex;
+    padding: 2rem 1rem;
+    height: auto;
+    overflow: hidden;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: $color-secondary;
+  }
+
+  &__title {
+    font-size: $fs-h1;
+    margin-bottom: 2rem;
+  }
+
+  &__popularPosts {
+    display: flex;
+    flex-direction: column;
+
+    &-item {
+      font-size: $fs-xxl;
+      color: $color-lightBlue;
+      display: block;
+      margin: 1rem 0;
+    }
+  }
 }

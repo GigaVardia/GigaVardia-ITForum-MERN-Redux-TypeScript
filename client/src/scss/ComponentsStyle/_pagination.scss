@@ -5,19 +5,22 @@
 
   &__btn {
     min-width: 4rem;
+    border: .5rem;
     padding: .5rem 1rem;
     height: auto;
     border: none;
     outline: none;
     margin-right: .5rem;
     cursor: pointer;
+    user-select: none;
+    background-color: $color-lightBlue;
 
     &--active {
-      background-color: blue;
+      background-color: $color-modalBtn;
     }
 
     &--disabled {
-      background-color: gray;
+      background-color: $color-gray;
     }
   }
 }

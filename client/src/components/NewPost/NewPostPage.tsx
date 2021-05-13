@@ -8,6 +8,7 @@ import Header from "../MainPage/Areas/Header";
 import Footer from "../MainPage/Areas/Footer";
 import Select from 'react-select'
 import {useAlert} from "../../hooks/UseAlert";
+import {API} from "../../config";
 
 const options = [
     { value: TopicsTypes.WEB_DEV, label: Topics.WebDev},
@@ -50,7 +51,7 @@ const NewPostPage: React.FC = () => {
         }
 
         try {
-            const data = await request('/api/posts/newPost', 'POST', {
+            const data = await request(`${API}/api/posts/newPost`, 'POST', {
                 title,
                 body: post,
                 topic: topic?.value,
