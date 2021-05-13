@@ -39,7 +39,7 @@ const Main: React.FC<MainSectionPropsType> = ({posts, loading}) => {
                 </h1>
                 <ul className="main__popularPosts">
                     {
-                        posts.length > 0 ? posts.map((item, index) => {
+                        posts.length > 0 ? sortedPopularPosts.map((item, index) => {
                             return (
                                 <Link
                                     key={`main${item.id}-${index}`}
