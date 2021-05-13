@@ -1,6 +1,6 @@
 import {useCallback, useEffect, useState} from "react";
 
-const storageName:string = "userData"
+const storageName = "userData"
 
 type dataType = {
     token: string,
@@ -18,7 +18,6 @@ export const useAuth = () => {
         localStorage.setItem(storageName, JSON.stringify({
             userId: id, token: jwtToken
         }))
-
     }, [])
 
     const logout = useCallback(() => {
