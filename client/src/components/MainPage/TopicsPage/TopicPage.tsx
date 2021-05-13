@@ -82,13 +82,6 @@ const TopicPage = () => {
                                                 {post.postBody}
                                             </div>
                                         </li>
-                                        <Link
-                                        className="topicPosts__posts-item"
-                                        to="/newPost"
-                                        onClick={onClickNewPost}
-                                        >
-                                        Add new Post!
-                                        </Link>
                                     </React.Fragment>
                                 )
                         }
